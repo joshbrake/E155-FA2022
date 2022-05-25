@@ -9,7 +9,8 @@
 
 */
 
-`include "seven_segment_led.sv"
+//`default_nettype none
+//`include "seven_segment_led.sv"
 
 module top (
   input  logic [3:0] s,
