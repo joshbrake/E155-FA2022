@@ -2,7 +2,7 @@
 `default_nettype none
 `define N_TV 16
 
-module lab01_tb();
+module seven_segment_led_tb();
 	// Set up test signals
   logic clk, reset;
 	logic [3:0] s;
@@ -42,8 +42,8 @@ module lab01_tb();
 	initial
 	begin
 		// Create dumpfile for signals
-		$dumpfile("lab01_tb.vcd");
-		$dumpvars(0, lab01_tb);
+		$dumpfile("seven_segment_led_tb.vcd");
+		$dumpvars(0, seven_segment_led_tb);
 	end
 	
   // Check results on the falling edge of clk
