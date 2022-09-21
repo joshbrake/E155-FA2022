@@ -24,7 +24,7 @@
 .global main
 
 // Create test array of bytes. Change this for different test cases.
-// This will get loaded to the RAM by the startup code (address 0x20000000)
+// This will get loaded to the RAM by the startup code
 .data
 src:
     .int 42, 54, 60, 72, 78, 86, 100, 112, 124, 130
