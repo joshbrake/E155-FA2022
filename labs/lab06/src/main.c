@@ -5,13 +5,11 @@ Email: jbrake@hmc.edu
 Date: 9/14/19
 */
 
-#include "STM32L432KC.h"
+
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
-
-#define LED_PIN PB3
-#define BUFF_LEN 32
+#include <main.h>
 
 /////////////////////////////////////////////////////////////////
 // Provided Constants and Functions
@@ -64,7 +62,8 @@ int main(void) {
   initTIM(TIM15);
   
   USART_TypeDef * USART = initUSART(USART1_ID, 125000);
-  initSPI(0b100, 0, 0);
+
+  // TODO: Add SPI initialization code
 
   while(1) {
     /* Wait for ESP8266 to send a request.
@@ -72,11 +71,8 @@ int main(void) {
     Therefore the request[] array must be able to contain 18 characters.
     */
 
-    while(1) {
-      spiSendReceive(0xAA);
-      delay_millis(TIM15, 10);
-    }
-  
+    // TODO: Add SPI code here for reading temperature
+
     // Receive web request from the ESP
     char request[BUFF_LEN] = "                  "; // initialize to known value
     int charIndex = 0;

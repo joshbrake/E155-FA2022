@@ -8,7 +8,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h>
-#include <stm32l432xx.h>
+#include <stm32l432xx.h>  // CMSIS device library include
 
 // Include other peripheral libraries
 
