@@ -5,8 +5,9 @@
 #define STM32L4_TIM_H
 
 #include <stdint.h> // Include stdint header
-#include "STM32L432KC_GPIO.h"
 #include <stm32l432xx.h>  // CMSIS device library include
+#include "STM32L432KC_GPIO.h"
+
 
 ///////////////////////////////////////////////////////////////////////////////
 // Function prototypes
