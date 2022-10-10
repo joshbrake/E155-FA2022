@@ -57,6 +57,8 @@ int main(void) {
   gpioEnable(GPIO_PORT_A);
   gpioEnable(GPIO_PORT_B);
   gpioEnable(GPIO_PORT_C);
+
+  pinMode(PB3, GPIO_OUTPUT);
   
   RCC->APB2ENR |= (RCC_APB2ENR_TIM15EN);
   initTIM(TIM15);
