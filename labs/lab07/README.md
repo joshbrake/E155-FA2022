@@ -8,3 +8,5 @@ You are provided with three testbenches to assist in your testing.
 1. `aes_spi_tb.sv` simulates the entire AES system including shifting in the data over SPI.
 2. `aes_core_tb.sv` simulates the AES core module by itself without the additional complication of getting the data in and out of the system via the shift registers and SPI. You should make sure your design passes this testbench before proceeding to test with `aes_spi_tb.sv`.
 3. `aes_sbox_tb.sv` is a simple testbench to illustrate the single clock cycle delay that is inherent in using a synchronous embedded block RAM. This single cycle of delay must be considered in your FSM design in order for it to work properly.
+
+`sbox.txt` is a text file containing the data for the sbox substitution and is used to configured the RAMs on the FPGA.
