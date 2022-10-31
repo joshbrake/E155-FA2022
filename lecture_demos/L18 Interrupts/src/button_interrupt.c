@@ -1,26 +1,22 @@
-// main_button_interrupt.c
+// button_interrupt.c
 // Josh Brake
 // jbrake@hmc.edu
-// 9/30/20
+// 10/31/22
 
 #include "main.h"
 
 int main(void) {
-    configureFlash();
-    configureClock();
-    
     // Enable LED as output
-    RCC->AHB1ENR.GPIOAEN = 1;
-    pinMode(GPIOA, LED_PIN, GPIO_OUTPUT);
+    gpioEnable(GPIO_PORT_A);
+    pinMode(LED_PIN, GPIO_OUTPUT);
 
     // Enable button as input
-    RCC->AHB1ENR.GPIOCEN = 1;
-    pinMode(GPIOC, BUTTON_PIN, GPIO_INPUT);
+    gpioEnable(GPIO_PORT_A);
+    pinMode(BUTTON_PIN, GPIO_INPUT);
 
     // Initialize timer
-    RCC->APB1ENR |= (1 << 0); // TIM2EN
+    RCC->APB1ENR1 |= RCC_APB1ENR1_TIM2EN;
     initTIM(DELAY_TIM);
-
 
     // TODO
     // 1. Enable SYSCFG clock domain in RCC
@@ -41,15 +37,15 @@ int main(void) {
 
 }
 
-// TODO: What is the right name for the IRQHandler for PC13?
+// TODO: What is the right name for the IRQHandler for PA2?
 void XXXXXX(void){
     // Check that the button EXTI_13 was what triggered our interrupt
-    if (EXTI->PR & (1 << BUTTON_PIN)){
+    if (EXTI->PR & (1 << )){
         // If so, clear the interrupt
-        EXTI->PR |= (1 << BUTTON_PIN);
+        EXTI->PR |= (1 << );
 
         // Then toggle the LED
-        togglePin(GPIOA, LED_PIN);
+        togglePin(LED_PIN);
 
     }
 }

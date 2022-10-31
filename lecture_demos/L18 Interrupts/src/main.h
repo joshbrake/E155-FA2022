@@ -1,19 +1,20 @@
 // main.h
 // Josh Brake
 // jbrake@hmc.edu
-// 9/30/20
+// 10/31/22
 
 #ifndef MAIN_H
 #define MAIN_H
 
 #include "STM32L432KC.h"
+#include <stm32l432xx.h>
 
 ///////////////////////////////////////////////////////////////////////////////
 // Custom defines
 ///////////////////////////////////////////////////////////////////////////////
 
-#define LED_PIN 5
-#define BUTTON_PIN 13 // PC13
+#define LED_PIN PA5
+#define BUTTON_PIN PA2
 #define DELAY_TIM TIM2
 
 #endif // MAIN_H

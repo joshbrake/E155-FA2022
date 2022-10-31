@@ -1,10 +1,10 @@
-// main_button_polling_solution.c
+// button_polling_solution.c
 // Josh Brake
 // jbrake@hmc.edu
-// 9/30/20
+// 10/31/22
 
 /*
-  This program polls the user button on the Nucleo-F401RE board and has a
+  This program polls the user button on the Nucleo-L432KC board and has a
   delay within the main loop to simulate the problems with polling for 
   catching events.
 */
@@ -12,31 +12,28 @@
 #include "main.h"
 
 int main(void) {
-    configureFlash();
-    configureClock();
-    
     // Enable LED as output
-    RCC->AHB1ENR.GPIOAEN = 1;
-    pinMode(GPIOA, LED_PIN, GPIO_OUTPUT);
+    gpioEnable(GPIO_PORT_A);
+    pinMode(LED_PIN, GPIO_OUTPUT);
 
     // Enable button as input
-    RCC->AHB1ENR.GPIOCEN = 1;
-    pinMode(GPIOC, BUTTON_PIN, GPIO_INPUT);
+    gpioEnable(GPIO_PORT_A);
+    pinMode(BUTTON_PIN, GPIO_INPUT);
 
     // Initialize timer
-    RCC->APB1ENR |= (1 << 0); // TIM2EN
+    RCC->APB1ENR1 |= RCC_APB1ENR1_TIM2EN;
     initTIM(DELAY_TIM);
 
-    uint8_t volatile cur_button_state = digitalRead(GPIOC, BUTTON_PIN);
-    uint8_t volatile led_state = 0;
-    uint8_t volatile prev_button_state = cur_button_state;
+    int volatile cur_button_state = digitalRead(BUTTON_PIN);
+    int volatile led_state = 0;
+    int volatile prev_button_state = cur_button_state;
 
     while(1){
         prev_button_state = cur_button_state;
-        cur_button_state = digitalRead(GPIOC, BUTTON_PIN);
+        cur_button_state = digitalRead(BUTTON_PIN);
         if (prev_button_state == 1 && cur_button_state == 0){
             led_state = !led_state;
-            digitalWrite(GPIOA, LED_PIN, led_state);
+            digitalWrite(LED_PIN, led_state);
         }
         delay_millis(DELAY_TIM, 200);
     }
