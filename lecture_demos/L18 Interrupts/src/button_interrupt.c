@@ -7,12 +7,13 @@
 
 int main(void) {
     // Enable LED as output
-    gpioEnable(GPIO_PORT_A);
+    gpioEnable(GPIO_PORT_B);
     pinMode(LED_PIN, GPIO_OUTPUT);
 
     // Enable button as input
     gpioEnable(GPIO_PORT_A);
     pinMode(BUTTON_PIN, GPIO_INPUT);
+    GPIOA->PUPDR |= _VAL2FLD(GPIO_PUPDR_PUPD2, 0b01); // Set PA2 as pull-up
 
     // Initialize timer
     RCC->APB1ENR1 |= RCC_APB1ENR1_TIM2EN;
@@ -20,16 +21,16 @@ int main(void) {
 
     // TODO
     // 1. Enable SYSCFG clock domain in RCC
-    // 2. Set EXTICR4 for PC13
+    // 2. Configure EXTICR for the input button interrupt
 
     // Enable interrupts globally
     __enable_irq();
 
-    // TODO: Configure interrupt for falling edge of GPIO PC13
+    // TODO: Configure interrupt for falling edge of GPIO pin for button
     // 1. Configure mask bit
     // 2. Disable rising edge trigger
     // 3. Enable falling edge trigger
-    // 4. Turn on EXTI interrupt in NVIC_ISER1
+    // 4. Turn on EXTI interrupt in NVIC_ISER
 
     while(1){   
         delay_millis(TIM2, 200);
@@ -37,12 +38,12 @@ int main(void) {
 
 }
 
-// TODO: What is the right name for the IRQHandler for PA2?
+// TODO: What is the right name for the IRQHandler?
 void XXXXXX(void){
-    // Check that the button EXTI_13 was what triggered our interrupt
-    if (EXTI->PR & (1 << )){
-        // If so, clear the interrupt
-        EXTI->PR |= (1 << );
+    // Check that the button was what triggered our interrupt
+    if (EXTI->PR1 & (1 << )){
+        // If so, clear the interrupt (NB: Write 1 to reset.)
+        EXTI->PR1 |= (1 << );
 
         // Then toggle the LED
         togglePin(LED_PIN);
