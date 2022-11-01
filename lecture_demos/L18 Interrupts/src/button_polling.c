@@ -1,4 +1,4 @@
-// button_polling_solution.c
+// button_polling.c
 // Josh Brake
 // jbrake@hmc.edu
 // 10/31/22
