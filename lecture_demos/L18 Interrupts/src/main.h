@@ -13,7 +13,7 @@
 // Custom defines
 ///////////////////////////////////////////////////////////////////////////////
 
-#define LED_PIN PA5
+#define LED_PIN PB3
 #define BUTTON_PIN PA2
 #define DELAY_TIM TIM2
 
